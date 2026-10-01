@@ -1,0 +1,30 @@
+﻿@page "/fibonacci"
+@rendermode InteractiveServer
+
+<h3>Fibonacci</h3>
+
+<label for="limit">Amount of numbers</label>
+<input id="limit" type="number" @bind="limit" />
+
+<p>@GetNumbers()</p>
+
+@code {
+    int limit = 1;
+    string GetNumbers()
+    {
+        if (limit <= 0)
+            return "";
+        long a = 0;
+        long b = 1;
+        string result = "0";
+        for (int i = 1; i < limit; i++)
+        {
+            result += ", " + b;
+
+            long next = a + b;
+            a = b;
+            b = next;
+        }
+        return result;
+    }
+}
