@@ -1,0 +1,27 @@
+﻿@page "/power"
+@rendermode InteractiveServer
+
+<h3>Power</h3>
+
+<div>
+	<label>Base: </label>
+	<input type="number" @bind="baseNumber" @bind:after="Calculate" />
+	<label>Power: </label>
+	<input type="number" @bind="powerNumber" @bind:after="Calculate" />
+</div>
+<div>
+	<h3>= @result</h3>
+</div>
+<button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+@code {
+	int baseNumber = 0;
+	int powerNumber = 0;
+	double result = 0;
+	void Calculate()
+	{
+		result = 1;
+		if (powerNumber == 0) result = 1;
+		for (int i = 0; i < Math.Abs(powerNumber); i++) result *= baseNumber;
+		if (powerNumber < 0) result = 1 / result;
+	}
+}
